@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluga-se Casa Nova</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .banner {
+            background: white;
+            max-width: 1200px;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .banner-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .banner-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .banner-header .location {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-top: 5px;
+        }
+
+        .banner-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .image-section {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* main image inside image-section - mostrar inteira sem recortar */
+        .image-section .main-photo {
+            width: 100%;
+            /* altura padrão; CSS externo ajusta para responsivo */
+            height: 420px;
+            object-fit: contain;
+            object-position: center;
+            background: #f0f0f0;
+            display: block;
+        }
+
+        .info-section {
+            padding: 40px;
+            background: #fafafa;
+        }
+
+        .subtitle {
+            color: #2c3e50;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .features {
+            margin-bottom: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 1.05em;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            margin-right: 12px;
+            font-size: 1.3em;
+        }
+
+        .requirements {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .requirements h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .requirements ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .requirements li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .requirements li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .contact-name {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .contact-phone {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 968px) {
+            .banner-content {
+                grid-template-columns: 1fr;
+            }
+
+            .banner-header h1 {
+                font-size: 2em;
+            }
+
+            .info-section {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .banner-header h1 {
+                font-size: 1.6em;
+            }
+
+            .banner-header .location {
+                font-size: 1.1em;
+            }
+
+            .contact-phone {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <div class="banner-header">
+            <h1>🏡 ALUGA-SE CASA NOVA</h1>
+            <div class="location">📍 Rua Flamboyant – Jd. Paulista</div>
+            <p style="margin-top: 15px; font-size: 1.1em;">✨ Ótima oportunidade. Casa bem localizada, perfeita para quem busca conforto.</p>
+        </div>
+
+        <div class="banner-content">
+            <div class="info-section">
+                <div class="subtitle">🔹 Características do imóvel:</div>
+
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="feature-icon">🛏</span>
+                        <span>02 quartos</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🛋</span>
+                        <span>Sala/cozinha integradas</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🚿</span>
+                        <span>Banheiro</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🚗</span>
+                        <span>Garagem (parte coberta)</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🚗</span>
+                        <span>Portão eletrônico</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🧺</span>
+                        <span>Lavanderia coberta</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🌳</span>
+                        <span>Fundo amplo</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🔐</span>
+                        <span>Porta com fechadura eletrônica</span>
+                    </div>
+                </div>
+
+                <div class="requirements">
+                    <h3>📄 Para alugar é necessário:</h3>
+                    <ul>
+                        <li>Documentos pessoais</li>
+                        <li>Comprovante de renda</li>
+                        <li>Referências</li>
+                        <li>Análise de crédito</li>
+                        <li>Garantias: Fiador / Caução</li>
+                    </ul>
+                </div>
+
+                <div class="contact-section">
+                    <h3>📞 Contato para visitas</h3>
+                    <div class="contact-name">Adauto Silva</div>
+                    <div class="contact-phone">📱 44 99757-6749</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery moved to the end of the page -->
+    <div class="gallery-section" style="max-width:1200px;margin:30px auto;padding:0 20px;">
+        <div class="image-section">
+            <!-- botão para abrir o seletor de imagens -->
+            <div class="gallery-controls" style="padding:12px; display:flex; gap:10px; align-items:center;">
+                <button id="openGalleryBtn" class="btn-gallery">📁 Abrir Galeria</button>
+                <input id="galleryInput" type="file" accept="image/*" multiple style="display:none">
+                <small style="color:#666">Máx. selecione várias imagens</small>
+            </div>
+
+            <!-- imagem principal / placeholder -->
+            <div class="gallery-main">
+                <img src="img.fente.retr.jpeg" alt="Fachada da Casa" class="main-photo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'height:420px;display:flex;align-items:center;justify-content:center;background:#e0e0e0;color:#666;font-size:1.2em\'>Imagem da Propriedade</div>'">
+            </div>
+
+            <!-- área de miniaturas -->
+            <div id="galleryPreview" class="gallery-preview" aria-live="polite"></div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
+
+    <!-- Pré-carregar imagens existentes na pasta (relativas ao arquivo) -->
+    <script>
+        window.preloadGallery = [
+            'img.frente.jpeg',
+            'img.fente.retr.jpeg',
+            'foto1.jpeg','foto2.jpeg','foto3.jpeg','foto4.jpeg','foto5.jpeg','foto6.jpeg','foto7.jpeg','foto8.jpeg','foto9.jpeg','foto10.jpeg',
+            'foto11.jpeg','foto12.jpeg','foto13.jpeg','foto14.jpeg','foto15.jpeg','foto16.jpeg','foto17.jpeg','foto18.jpeg','foto19.jpeg','foto20.jpeg',
+            'foto21.jpeg','foto22.jpeg','foto23.jpeg','foto24.jpeg','foto25.jpeg','foto26.jpeg','foto27.jpeg','foto28.jpeg'
+        ];
+    </script>
+
+    <script>
+        (function(){
+            const openBtn = document.getElementById('openGalleryBtn');
+            const input = document.getElementById('galleryInput');
+            const preview = document.getElementById('galleryPreview');
+            const mainPhotoContainer = document.querySelector('.gallery-main');
+            // lista ordenada das fontes das imagens exibidas na galeria (miniaturas -> lightbox)
+            const gallerySources = [];
+            let currentIndex = -1;
+
+            function isImage(file){
+                return file && file.type && file.type.startsWith('image/');
+            }
+
+            openBtn.addEventListener('click', ()=> input.click());
+
+            input.addEventListener('change', (e)=>{
+                const files = Array.from(e.target.files || []);
+                files.forEach(file => {
+                    if(!isImage(file)) return;
+                    const reader = new FileReader();
+                    reader.onload = function(ev){
+                        const url = ev.target.result;
+                        addThumbnail(url, file.name);
+                    };
+                    reader.readAsDataURL(file);
+                });
+                // reset input so same file can be selected again if needed
+                input.value = '';
+            });
+
+            function addThumbnail(src, name){
+                const item = document.createElement('div');
+                item.className = 'thumb-item';
+
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = name || 'imagem selecionada';
+                img.tabIndex = 0;
+                img.addEventListener('click', ()=> setMain(src));
+                img.addEventListener('keypress', (ev)=>{ if(ev.key === 'Enter') setMain(src); });
+                // abrir em tela cheia (lightbox) ao clicar na miniatura
+                img.addEventListener('click', ()=> openLightbox(src));
+
+                item.appendChild(img);
+                // registrar índice e fonte na lista ordenada
+                const idx = gallerySources.length;
+                gallerySources.push(src);
+                item.dataset.index = idx;
+                preview.appendChild(item);
+
+                // if first thumbnail, set as main
+                if(preview.children.length === 1){
+                    setMain(src);
+                }
+            }
+
+            function setMain(src){
+                const existing = mainPhotoContainer.querySelector('img');
+                if(existing){
+                    existing.src = src;
+                    // garantir que clicar na imagem principal abra o lightbox
+                    existing.onclick = function(){ openLightbox(src); };
+                } else {
+                    const img = document.createElement('img');
+                    img.className = 'main-photo';
+                    img.src = src;
+                    img.style.cursor = 'zoom-in';
+                    img.addEventListener('click', ()=> openLightbox(src));
+                    mainPhotoContainer.innerHTML = '';
+                    mainPhotoContainer.appendChild(img);
+                }
+            }
+
+            // se houver imagens pré-carregadas, adiciona-as à galeria
+            if(Array.isArray(window.preloadGallery) && window.preloadGallery.length){
+                window.preloadGallery.forEach(src => {
+                    try{ addThumbnail(src, src); }catch(e){ console.warn('Erro ao pré-carregar', src, e); }
+                });
+            }
+
+            /* Lightbox (overlay) handling with navigation arrows */
+            const lightbox = document.createElement('div');
+            lightbox.id = 'lightboxOverlay';
+            lightbox.className = 'lightbox-overlay';
+            lightbox.innerHTML = '<div class="lightbox-content">'
+                + '<button id="lightboxPrev" class="lightbox-nav lightbox-prev" aria-label="Anterior">◀</button>'
+                + '<img id="lightboxImg" alt="Imagem em tela cheia">'
+                + '<button id="lightboxNext" class="lightbox-nav lightbox-next" aria-label="Próxima">▶</button>'
+                + '<button id="lightboxClose" class="lightbox-close">✕</button>'
+                + '</div>';
+            document.body.appendChild(lightbox);
+
+            const lbOverlay = document.getElementById('lightboxOverlay');
+            const lbImg = document.getElementById('lightboxImg');
+            const lbClose = document.getElementById('lightboxClose');
+            const lbPrev = document.getElementById('lightboxPrev');
+            const lbNext = document.getElementById('lightboxNext');
+
+            // prevent background scroll while lightbox open
+            let _previousBodyOverflow = '';
+
+            function showAt(index){
+                if(index < 0 || index >= gallerySources.length) return;
+                currentIndex = index;
+                lbImg.src = gallerySources[currentIndex];
+                lbOverlay.style.display = 'flex';
+                _previousBodyOverflow = document.body.style.overflow || '';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function openLightbox(src){
+                const idx = gallerySources.indexOf(src);
+                if(idx === -1){
+                    // imagem não encontrada na lista; apenas mostre sem navegação
+                    lbImg.src = src;
+                    currentIndex = -1;
+                    lbOverlay.style.display = 'flex';
+                    _previousBodyOverflow = document.body.style.overflow || '';
+                    document.body.style.overflow = 'hidden';
+                    document.addEventListener('keydown', onKeyDown);
+                    return;
+                }
+                showAt(idx);
+                document.addEventListener('keydown', onKeyDown);
+            }
+
+            function closeLightbox(){
+                lbOverlay.style.display = 'none';
+                lbImg.src = '';
+                document.body.style.overflow = _previousBodyOverflow;
+                document.removeEventListener('keydown', onKeyDown);
+            }
+
+            function onKeyDown(e){
+                if(e.key === 'Escape') return closeLightbox();
+                if(e.key === 'ArrowRight') return nextImage();
+                if(e.key === 'ArrowLeft') return prevImage();
+            }
+
+            function nextImage(){
+                if(gallerySources.length === 0) return;
+                if(currentIndex === -1) return;
+                const nxt = (currentIndex + 1) % gallerySources.length;
+                showAt(nxt);
+            }
+
+            function prevImage(){
+                if(gallerySources.length === 0) return;
+                if(currentIndex === -1) return;
+                const prev = (currentIndex - 1 + gallerySources.length) % gallerySources.length;
+                showAt(prev);
+            }
+
+            lbOverlay.addEventListener('click', function(e){
+                // fechar ao clicar fora da imagem (no overlay)
+                if(e.target === lbOverlay) closeLightbox();
+            });
+            lbClose.addEventListener('click', closeLightbox);
+            lbPrev.addEventListener('click', prevImage);
+            lbNext.addEventListener('click', nextImage);
+        })();
+    </script>
+</body>
+</html>
