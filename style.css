@@ -1,3 +1,7 @@
+/* Galeria oculta por padrão, exibida apenas quando ativada */
+.gallery-section {
+	display: none;
+}
 /* Styles for gallery button and preview */
 .btn-gallery{
 	background: linear-gradient(180deg,#ffffff,#f1f1f1);
