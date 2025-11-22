@@ -9,57 +9,42 @@ window.preloadGallery = [
     'foto21.jpeg','foto22.jpeg','foto23.jpeg','foto24.jpeg','foto25.jpeg','foto26.jpeg','foto27.jpeg','foto28.jpeg'
 ];
 
-(function(){
-    const openBtn = document.getElementById('openGalleryBtn');
-    const input = document.getElementById('galleryInput');
+
+// Função "Ver Galeria": mostra/oculta a galeria ao clicar no botão
+document.addEventListener('DOMContentLoaded', function() {
+    const viewBtn = document.getElementById('viewGalleryBtn');
+    const gallerySection = document.getElementById('gallerySection');
     const preview = document.getElementById('galleryPreview');
     const mainPhotoContainer = document.querySelector('.gallery-main');
-    // lista ordenada das fontes das imagens exibidas na galeria (miniaturas -> lightbox)
     const gallerySources = [];
     let currentIndex = -1;
 
-    function isImage(file){
-        return file && file.type && file.type.startsWith('image/');
-    }
-
-    openBtn.addEventListener('click', ()=> input.click());
-
-    input.addEventListener('change', (e)=>{
-        const files = Array.from(e.target.files || []);
-        files.forEach(file => {
-            if(!isImage(file)) return;
-            const reader = new FileReader();
-            reader.onload = function(ev){
-                const url = ev.target.result;
-                addThumbnail(url, file.name);
-            };
-            reader.readAsDataURL(file);
-        });
-        // reset input so same file can be selected again if needed
-        input.value = '';
+    // Alternar visibilidade da galeria
+    viewBtn.addEventListener('click', function() {
+        if (gallerySection.style.display === 'none' || gallerySection.style.display === '') {
+            gallerySection.style.display = 'block';
+            viewBtn.textContent = 'Ocultar Galeria';
+        } else {
+            gallerySection.style.display = 'none';
+            viewBtn.textContent = 'Ver Galeria';
+        }
     });
 
     function addThumbnail(src, name){
         const item = document.createElement('div');
         item.className = 'thumb-item';
-
         const img = document.createElement('img');
         img.src = src;
-        img.alt = name || 'imagem selecionada';
+        img.alt = name || 'imagem';
         img.tabIndex = 0;
         img.addEventListener('click', ()=> setMain(src));
         img.addEventListener('keypress', (ev)=>{ if(ev.key === 'Enter') setMain(src); });
-        // abrir em tela cheia (lightbox) ao clicar na miniatura
         img.addEventListener('click', ()=> openLightbox(src));
-
         item.appendChild(img);
-        // registrar índice e fonte na lista ordenada
         const idx = gallerySources.length;
         gallerySources.push(src);
         item.dataset.index = idx;
         preview.appendChild(item);
-
-        // if first thumbnail, set as main
         if(preview.children.length === 1){
             setMain(src);
         }
@@ -69,7 +54,6 @@ window.preloadGallery = [
         const existing = mainPhotoContainer.querySelector('img');
         if(existing){
             existing.src = src;
-            // garantir que clicar na imagem principal abra o lightbox
             existing.onclick = function(){ openLightbox(src); };
         } else {
             const img = document.createElement('img');
@@ -82,14 +66,14 @@ window.preloadGallery = [
         }
     }
 
-    // se houver imagens pré-carregadas, adiciona-as à galeria
+    // Carregar imagens pré-definidas
     if(Array.isArray(window.preloadGallery) && window.preloadGallery.length){
         window.preloadGallery.forEach(src => {
             try{ addThumbnail(src, src); }catch(e){ console.warn('Erro ao pré-carregar', src, e); }
         });
     }
 
-    /* Lightbox (overlay) handling with navigation arrows */
+    // Lightbox (overlay) com navegação
     const lightbox = document.createElement('div');
     lightbox.id = 'lightboxOverlay';
     lightbox.className = 'lightbox-overlay';
@@ -106,8 +90,6 @@ window.preloadGallery = [
     const lbClose = document.getElementById('lightboxClose');
     const lbPrev = document.getElementById('lightboxPrev');
     const lbNext = document.getElementById('lightboxNext');
-
-    // prevent background scroll while lightbox open
     let _previousBodyOverflow = '';
 
     function showAt(index){
@@ -122,7 +104,6 @@ window.preloadGallery = [
     function openLightbox(src){
         const idx = gallerySources.indexOf(src);
         if(idx === -1){
-            // imagem não encontrada na lista; apenas mostre sem navegação
             lbImg.src = src;
             currentIndex = -1;
             lbOverlay.style.display = 'flex';
@@ -163,11 +144,9 @@ window.preloadGallery = [
     }
 
     lbOverlay.addEventListener('click', function(e){
-        // fechar ao clicar fora da imagem (no overlay)
         if(e.target === lbOverlay) closeLightbox();
     });
     lbClose.addEventListener('click', closeLightbox);
     lbPrev.addEventListener('click', prevImage);
     lbNext.addEventListener('click', nextImage);
-
-})();
+});
